@@ -1,6 +1,5 @@
 <?php
-require ("connect-db.php");    // include("connect-db.php");
-// require("request-db.php");
+require ("connect-db.php");
 session_start();
 ?>
 
@@ -19,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = $statement->fetch();
 
     if (password_verify($mypassword, $result['passcode'])) {
-        // session_register("myusername");
         $_SESSION['username'] = $myusername;
         header("location: home.php");
     } else {

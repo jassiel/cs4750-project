@@ -19,7 +19,24 @@ session_start();
 
 <body>
    <?php include ("header.php"); ?>
-   <h1>Welcome <?php echo $_SESSION['username']; ?></h1>
+   <?php if (isset($_SESSION['username'])) { ?>
+      <div class="container" align="center">
+         <div class="row g-3 mt-2">
+            <div class="col">
+               <h2>Welcome <?php echo $_SESSION['username']; ?></h2>
+            </div>
+         </div>
+      </div>
+   <?php } else { ?>
+      <div class="container" align="center">
+         <div class="row g-3 mt-2">
+            <div class="col">
+               <h2>Please login</h2>
+            </div>
+         </div>
+      </div>
+   <?php } ?>
+
 </body>
 
 </html>
