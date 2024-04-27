@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (password_verify($mypassword, $result['passcode'])) {
         // session_register("myusername");
-        $_SESSION['login_user'] = $myusername;
+        $_SESSION['username'] = $myusername;
         header("location: home.php");
     } else {
         $error = 'Your Username or Password is invalid ';
@@ -44,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Medical Portal</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="maintenance-system.css">
 </head>
 
 <body>
