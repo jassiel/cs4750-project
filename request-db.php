@@ -160,4 +160,30 @@ function deleteAppointment($appID)
     $statement->execute();
     $statement->closeCursor();
 }
+function exportPatients($patients) {
+   $filename = "patients_" . date('Y-m-d') . ".csv";
+   header('Content-Type: text/csv; charset=utf-8');
+   header('Content-Disposition: attachment; filename="' . $filename . '"');
+   $output = fopen('php://output', 'w');
+   fputcsv($output, array('Patient ID', 'First Name', 'Last Name', 'Gender', 'DOB', 'SSN', 'Ethnicity', 'Street', 'City', 'State', 'Zip'));
+
+   foreach ($patients as $row) {
+       fputcsv($output, array(
+           $row['pID'],
+           $row['first'],
+           $row['last'],
+           $row['gender'],
+           $row['DOB'],
+           $row['SSN'],
+           $row['ethnicity'],
+           $row['street'],
+           $row['city'],
+           $row['state'],
+           $row['zip'],
+       ));
+   }
+
+   fclose($output);
+   exit();
+}
 ?>
