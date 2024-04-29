@@ -67,11 +67,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="col-4 d-grid ">
                         <h3>Appointments</h3>
                     </div>
-                    <div class="col text-end">
-                        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                            <input type="submit" name="exportApps" value="Export" class="btn btn-success">
-                        </form>
-                    </div>
                 </div>
                 <button type="btn btn-secondary" class="collapsible">View</button>
                 <div class="content row justify-content-center">
@@ -109,11 +104,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="row g-3 mx-auto">
                     <div class="col-4 d-grid ">
                         <h3>Bills</h3>
-                    </div>
-                    <div class="col text-end">
-                        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                            <input type="submit" name="exportBills" value="Export" class="btn btn-success">
-                        </form>
                     </div>
                 </div>
                 <button type="btn btn-secondary" class="collapsible">View</button>
@@ -154,11 +144,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="col-4 d-grid ">
                         <h3>Immunizations</h3>
                     </div>
-                    <div class="col text-end">
-                        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                            <input type="submit" name="exportImms" value="Export" class="btn btn-success">
-                        </form>
-                    </div>
                 </div>
                 <button type="btn btn-secondary" class="collapsible">View</button>
                 <div class="content row justify-content-center">
@@ -195,11 +180,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="col-4 d-grid ">
                         <h3>Medications</h3>
                     </div>
-                    <div class="col text-end">
-                        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                            <input type="submit" name="exportMeds" value="Export" class="btn btn-success">
-                        </form>
-                    </div>
                 </div>
                 <button type="btn btn-secondary" class="collapsible">View</button>
                 <div class="content row justify-content-center">
@@ -235,11 +215,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="row g-3 mx-auto">
                     <div class="col-4 d-grid ">
                         <h3>Allergies</h3>
-                    </div>
-                    <div class="col text-end">
-                        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                            <input type="submit" name="exportAlls" value="Export" class="btn btn-success">
-                        </form>
                     </div>
                 </div>
                 <button type="btn btn-secondary" class="collapsible">View</button>
