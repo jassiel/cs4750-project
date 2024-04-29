@@ -213,7 +213,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <input type="hidden" name="appID"
                      value="<?php echo $appointment_info['appID']; ?>" />
             </form>
-          </td>s
+          </td>
         </tr>
       <?php endforeach; ?>
     </tbody>

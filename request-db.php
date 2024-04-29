@@ -1,4 +1,5 @@
 <?php
+require ("connect-db.php");
 function addPatients($pID, $first, $last, $gender, $DOB, $SSN, $ethnicity, $street, $city, $state, $zip)
 {
    global $db;
@@ -26,6 +27,32 @@ function addPatients($pID, $first, $last, $gender, $DOB, $SSN, $ethnicity, $stre
       $e->getMessage();   // consider a generic message
    } catch (Exception $e) {
       $e->getMessage();   // consider a generic message
+   }
+}
+
+function addAppt($docID, $pID, $appID, $date, $description)
+{
+   global $db;
+
+   $query = "INSERT INTO Appointments (`docID`, `pID`, `appID`, `date`, `description`) VALUES (:docID, :pID, :appID, :date, :description)";
+    
+   try {
+      $statement = $db->prepare($query);
+      $statement->bindValue(':docID', $docID);
+      $statement->bindValue(':pID', $pID);
+      $statement->bindValue(':appID', $appID);
+      $statement->bindValue(':date', $date);
+      $statement->bindValue(':description', $description);
+
+      $statement->execute();
+      $statement->closeCursor();
+      return 0; 
+   } catch (PDOException $e) {
+      $e->getMessage();   // consider a generic message
+      return 1; 
+   } catch (Exception $e) {
+      $e->getMessage();   // consider a generic message
+      return 1;
    }
 }
 
@@ -248,7 +275,7 @@ function getPatientDoctor($docID)
    $statement->execute();
    $result = $statement->fetch();
    $statement->closeCursor();
-   echo $result == 0;
+   // echo $result == 0;
    if ($result == 0) {
       return NULL;
    } else
@@ -433,5 +460,29 @@ function exportAlls($alls)
 
    fclose($output);
    exit();
+}
+
+function getDocIdFromUserId($userID) {
+   global $db;
+   $query = "select * from Doctor where userID=:userID";
+   $statement = $db->prepare($query);    // compile
+   $statement->bindValue(':userID', $userID);
+   $statement->execute();
+   $result = $statement->fetch();
+   $statement->closeCursor();
+
+   return $result;
+}
+
+function getUserIdFromUsername($username) {
+   global $db;
+   $query = "select * from Users where username=:username";
+   $statement = $db->prepare($query);    // compile
+   $statement->bindValue(':username', $username);
+   $statement->execute();
+   $result = $statement->fetch();
+   $statement->closeCursor();
+
+   return $result;
 }
 ?>

@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (password_verify($mypassword, $result['passcode'])) {
         $_SESSION['username'] = $myusername;
         $_SESSION['usertype'] = $result['usertype'];
-        $_SESSION['userID'] = intval($result['userID']);;
+        $_SESSION['userID'] = intval($result['userID']);
         header("location: home.php");
     } else {
         $error = 'Your Username or Password is invalid ';

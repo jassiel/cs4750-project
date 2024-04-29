@@ -52,13 +52,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div align="left">
             <?php if ($appointments == NULL) { ?>
                 <div class="col-md-8">
-                    <h2>Appointments</h2>
+                    <h3>Appointments</h3>
                     <p>No upcoming appointments</p>
                 </div>
             <?php } else { ?>
                 <div class="row g-3 mx-auto">
                     <div class="col-4 d-grid ">
-                        <h2>Appointments</h2>
+                        <h3>Appointments</h3>
                     </div>
                     <div class="col text-end">
                         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
@@ -89,17 +89,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 
+    <hr/>
+
     <div class="container">
         <div align="left">
             <?php if ($bills == NULL) { ?>
                 <div class="col-md-8">
-                    <h2>Bills</h2>
+                    <h3>Bills</h3>
                     <p>No bills to show</p>
                 </div>
             <?php } else { ?>
                 <div class="row g-3 mx-auto">
                     <div class="col-4 d-grid ">
-                        <h2>Bills</h2>
+                        <h3>Bills</h3>
                     </div>
                     <div class="col text-end">
                         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
@@ -131,17 +133,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 
+    <hr/>
+
     <div class="container">
         <div align="left">
             <?php if ($immunizations == NULL) { ?>
                 <div class="col-md-8">
-                    <h2>Immunizations</h2>
+                    <h3>Immunizations</h3>
                     <p>No records on file</p>
                 </div>
             <?php } else { ?>
                 <div class="row g-3 mx-auto">
                     <div class="col-4 d-grid ">
-                        <h2>Immunizations</h2>
+                        <h3>Immunizations</h3>
                     </div>
                     <div class="col text-end">
                         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
@@ -170,17 +174,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 
+    <hr/>
+
     <div class="container">
         <div align="left">
             <?php if ($meds == NULL) { ?>
                 <div class="col-md-8">
-                    <h2>Medications</h2>
+                    <h3>Medications</h3>
                     <p>None perscribed</p>
                 </div>
             <?php } else { ?>
                 <div class="row g-3 mx-auto">
                     <div class="col-4 d-grid ">
-                        <h2>Medications</h2>
+                        <h3>Medications</h3>
                     </div>
                     <div class="col text-end">
                         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
@@ -209,17 +215,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 
+    <hr/>
+
     <div class="container">
         <div align="left">
             <?php if ($allergies == NULL) { ?>
                 <div class="col-md-8">
-                    <h2>Allergies</h2>
+                    <h3>Allergies</h3>
                     <p>None on record</p>
                 </div>
             <?php } else { ?>
                 <div class="row g-3 mx-auto">
                     <div class="col-4 d-grid ">
-                        <h2>Allergies</h2>
+                        <h3>Allergies</h3>
                     </div>
                     <div class="col text-end">
                         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
