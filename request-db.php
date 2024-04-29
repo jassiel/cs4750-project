@@ -246,6 +246,30 @@ function exportPatients($patients)
    fclose($output);
    exit();
 }
+function exportAppointments($appointments)
+{
+   $filename = "appointments_" . date('Y-m-d') . ".csv";
+   header('Content-Type: text/csv; charset=utf-8');
+   header('Content-Disposition: attachment; filename="' . $filename . '"');
+   $output = fopen('php://output', 'w');
+   fputcsv($output, array('Doctor ID', 'Patient ID', 'Appointment ID', 'Date', 'Description'));
+   foreach ($appointments as $row) {
+      fputcsv(
+         $output,
+         array(
+            $row['docID'],
+            $row['pID'],
+            $row['appID'],
+            $row['date'],
+            $row['description'], 
+         )
+      );
+   }
+
+   fclose($output);
+   exit();
+}
+
 
 function getPatientByUserId($userID)
 {

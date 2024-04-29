@@ -29,7 +29,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else if (!empty($_POST['confirmUpdateAppointmentBtn'])) { 
         updateAppointment($_POST['confirmUpdateAppID'], $_POST['docID'], $_POST['pID'], $_POST['date'], $_POST['description']); 
         $list_of_appointments = getAllAppointments(); 
-    } 
+    } else if (!empty($_POST['exportCSV'])) {
+        $list_of_appointments = getAllAppointments(); 
+        exportAppointments($list_of_appointments);
+    }
 } 
 ?>
 
@@ -179,7 +182,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <hr/>
 <div class="container">
-  <h3>List of appointments</h3>
+<div class="row align-items-center">
+      <div class="col-md-8">
+        <h2>List of Appointments</h2>
+      </div>
+      <div class="col text-end">
+        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+          <input type="submit" name="exportCSV" value="Export" class="btn btn-success">
+        </form>
+      </div>
+    </div>
+    <div class="row justify-content-center">
   <table class="w3-table w3-bordered w3-card-4 center" style="width:100%">
     <thead>
       <tr style="background-color:#B0B0B0">
