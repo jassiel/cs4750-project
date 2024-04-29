@@ -1,7 +1,20 @@
 <?php
 session_start();
 // require("connect-db.php");
-// require ("request-db.php");
+require ("request-db.php");
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+   if (!empty($_POST['deleteBtn'])) {
+      echo ($_POST['appID']);
+      $res = deleteAppointment($_POST['appID']);
+      if ($res) {
+         echo "Failed to delete";
+      } else {
+         header("location: home.php");
+      }
+      // $list_of_appointments = getAllAppointments();
+   }
+}
+
 ?>
 <html>
 

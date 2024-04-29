@@ -35,7 +35,7 @@ function addAppt($docID, $pID, $appID, $date, $description)
    global $db;
 
    $query = "INSERT INTO Appointments (`docID`, `pID`, `appID`, `date`, `description`) VALUES (:docID, :pID, :appID, :date, :description)";
-    
+
    try {
       $statement = $db->prepare($query);
       $statement->bindValue(':docID', $docID);
@@ -46,10 +46,10 @@ function addAppt($docID, $pID, $appID, $date, $description)
 
       $statement->execute();
       $statement->closeCursor();
-      return 0; 
+      return 0;
    } catch (PDOException $e) {
       $e->getMessage();   // consider a generic message
-      return 1; 
+      return 1;
    } catch (Exception $e) {
       $e->getMessage();   // consider a generic message
       return 1;
@@ -173,11 +173,22 @@ function updateAppointment($docID, $pID, $appID, $date, $description)
 function deleteAppointment($appID)
 {
    global $db;
-   $query = "DELETE FROM Appointments WHERE appID=:appID";
-   $statement = $db->prepare($query);
-   $statement->bindValue(':appID', $appID);
-   $statement->execute();
-   $statement->closeCursor();
+   echo "here";
+   try {
+      $query = "DELETE FROM Appointments WHERE appID=:appID";
+      $statement = $db->prepare($query);
+      $statement->bindValue(':appID', $appID);
+      $statement->execute();
+      $statement->closeCursor();
+      return 0;
+   } catch (PDOException $e) {
+      $e->getMessage();   // consider a generic message
+      return 1;
+   } catch (Exception $e) {
+      $e->getMessage();   // consider a generic message
+      return 1;
+   }
+
 }
 function exportPatients($patients)
 {
@@ -188,19 +199,21 @@ function exportPatients($patients)
    fputcsv($output, array('Patient ID', 'First Name', 'Last Name', 'Gender', 'DOB', 'SSN', 'Ethnicity', 'Street', 'City', 'State', 'Zip'));
 
    foreach ($patients as $row) {
-      fputcsv($output, array(
-         $row['pID'],
-         $row['first'],
-         $row['last'],
-         $row['gender'],
-         $row['DOB'],
-         $row['SSN'],
-         $row['ethnicity'],
-         $row['street'],
-         $row['city'],
-         $row['state'],
-         $row['zip'],
-      )
+      fputcsv(
+         $output,
+         array(
+            $row['pID'],
+            $row['first'],
+            $row['last'],
+            $row['gender'],
+            $row['DOB'],
+            $row['SSN'],
+            $row['ethnicity'],
+            $row['street'],
+            $row['city'],
+            $row['state'],
+            $row['zip'],
+         )
       );
    }
 
@@ -371,10 +384,12 @@ function exportApps($apps)
    fputcsv($output, array('Date', 'Reason for visit'));
 
    foreach ($apps as $row) {
-      fputcsv($output, array(
-         $row['date'],
-         $row['description'],
-      )
+      fputcsv(
+         $output,
+         array(
+            $row['date'],
+            $row['description'],
+         )
       );
    }
 
@@ -392,10 +407,12 @@ function exportBills($bills)
 
    foreach ($bills as $row) {
       $temp = getBillApp($row['appID']);
-      fputcsv($output, array(
-         $temp['date'],
-         $row['cost'],
-      )
+      fputcsv(
+         $output,
+         array(
+            $temp['date'],
+            $row['cost'],
+         )
       );
    }
 
@@ -412,9 +429,11 @@ function exportImms($imms)
    fputcsv($output, array('Immunization'));
 
    foreach ($imms as $row) {
-      fputcsv($output, array(
-         $row['description'],
-      )
+      fputcsv(
+         $output,
+         array(
+            $row['description'],
+         )
       );
    }
 
@@ -431,9 +450,11 @@ function exportMeds($meds)
    fputcsv($output, array('Medication'));
 
    foreach ($meds as $row) {
-      fputcsv($output, array(
-         $row['description'],
-      )
+      fputcsv(
+         $output,
+         array(
+            $row['description'],
+         )
       );
    }
 
@@ -450,11 +471,13 @@ function exportAlls($alls)
    fputcsv($output, array('Allergy', 'Description', 'Severity'));
 
    foreach ($alls as $row) {
-      fputcsv($output, array(
-         $row['aType'],
-         $row['description'],
-         $row['severity'],
-      )
+      fputcsv(
+         $output,
+         array(
+            $row['aType'],
+            $row['description'],
+            $row['severity'],
+         )
       );
    }
 
@@ -462,7 +485,8 @@ function exportAlls($alls)
    exit();
 }
 
-function getDocIdFromUserId($userID) {
+function getDocIdFromUserId($userID)
+{
    global $db;
    $query = "select * from Doctor where userID=:userID";
    $statement = $db->prepare($query);    // compile
@@ -474,7 +498,8 @@ function getDocIdFromUserId($userID) {
    return $result;
 }
 
-function getUserIdFromUsername($username) {
+function getUserIdFromUsername($username)
+{
    global $db;
    $query = "select * from Users where username=:username";
    $statement = $db->prepare($query);    // compile

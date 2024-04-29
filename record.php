@@ -1,17 +1,17 @@
 <?php
 session_start();
 // require("connect-db.php");
-// require ("request-db.php");
+require ("request-db.php");
 ?>
 
 <?php   // form handling
-$patient = getPidFromUserID($_SESSION['userID']);
+$patient = getPatientById($_POST['pID']);
 $allergies = getPatientAllergies($patient[0]);
 $appointments = getPatientAppointments($patient[0]);
 $bills = getPatientBills($patient[0]);
 $immunizations = getPatientImmunizations($patient[0]);
 $meds = getPatientMedications($patient[0]);
-
+$name = $patient['first'] . ' ' . $patient['last'];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!empty($_POST['exportApps'])) {
@@ -46,9 +46,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-<hr />
+
 
     <div class="container">
+        <div class="container" align="center">
+            <div class="row g-3 mt-2">
+                <div class="col">
+                    <h2>Viewing <?php echo $name; ?>'s Medical Record</h2>
+                </div>
+            </div>
+        </div>
         <div align="left">
             <?php if ($appointments == NULL) { ?>
                 <div class="col-md-8">
@@ -259,6 +266,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php } ?>
         </div>
     </div>
+
+    <!-- <div class="container">
+        <div align="left">
+            <form action="record.php" method="POST">
+                <input type="submit" value="Delete Record?" name="updateBtn" class="btn btn-danger" />
+                <input type="hidden" name="pID" value="<?php echo $patient_info['pID']; ?>" />
+            </form>
+        </div>
+    </div> -->
 
 
 

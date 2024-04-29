@@ -33,7 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else if (!empty($_POST['confirmUpdateAppointmentBtn'])) {
         updateAppointment($_POST['confirmUpdateAppID'], $_POST['docID'], $_POST['pID'], $_POST['date'], $_POST['description']);
         $list_of_appointments = getAllAppointments();
-    }
+    } else if (!empty($_POST['deleteBtn'])) {
+        var_dump($list_of_appointments);
+        deleteAppointment($_POST['appID']);
+        $list_of_appointments = getAllAppointments();
+    } 
 }
 ?>
 
@@ -55,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
 
-<hr/>
+    <hr />
     <div class="container">
         <div align="left">
             <div class="row g-3 mx-auto">
@@ -63,11 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <h3>Appointments</h3>
                 </div>
                 <div class="col text-end">
-                <button type="btn btn-primary" onclick="location.href='newAppointment.php'">New Appointment</button>
-                    <form method="get" action="newAppointment.php">
-                        <input type="submit" name="newAppt" value="New Appointment" class="btn btn-primary">
-                        <input type="hidden" name="docID" value="<?php echo $doctor[0]; ?>" />
-                    </form>
+                    <button type="btn btn-primary" onclick="location.href='newAppointment.php'">New Appointment</button>
                 </div>
             </div>
         </div>
@@ -80,6 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <th>Date</th>
                         <th>Description</th>
                         <th><b>Details</b></th>
+                        <th><b>Delete</b></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -95,6 +96,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <input type="hidden" name="appID" value="<?php echo $appointment_info['appID']; ?>" />
                                 </form>
                             </td>
+                            <td>
+                                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+                                    <input type="submit" value="Delete" name="deleteBtn" class="btn btn-danger" />
+                                    <input type="hidden" name="appID" value="<?php echo $appointment_info['appID']; ?>" />
+                                </form>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -102,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 
-    <hr/>
+    <hr />
 
     <div class="container">
         <div align="left">
@@ -128,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <td><?php echo $patient_info['gender']; ?></td>
                             <td><?php echo $patient_info['DOB']; ?></td>
                             <td>
-                                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                                <form action="record.php" method="POST">
                                     <input type="submit" value="View" name="updateBtn" class="btn btn-primary" />
                                     <input type="hidden" name="pID" value="<?php echo $patient_info['pID']; ?>" />
                                 </form>
