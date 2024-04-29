@@ -107,6 +107,32 @@ function updatePatient($pID, $first, $last, $gender, $DOB, $SSN, $ethnicity, $st
    $statement->closeCursor();
 }
 
+function updateAddress($pID, $street, $city, $state, $zip)
+{
+   global $db;
+   $query = "update Patient set street=:street, city=:city, state=:state, zip=:zip where pID=:pID";
+
+   try {
+      $statement = $db->prepare($query);
+      $statement->bindValue(':pID', $pID);
+      $statement->bindValue(':street', $street);
+      $statement->bindValue(':city', $city);
+      $statement->bindValue(':state', $state);
+      $statement->bindValue(':zip', $zip);
+      $statement->execute();
+      $statement->closeCursor();
+      return 0;
+   } catch (PDOException $e) {
+      $e->getMessage();   // consider a generic message
+      echo $e;
+      return 1;
+   } catch (Exception $e) {
+      $e->getMessage();   // consider a generic message
+      echo $e;
+      return 1;
+   }
+}
+
 function deletePatient($pID)
 {
    global $db;

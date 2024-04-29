@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-<hr />
+    <hr />
 
     <div class="container">
         <div align="left">
@@ -257,6 +257,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </table>
                 </div>
             <?php } ?>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="container">
+        <div align="left">
+            <div class="col-md-8">
+                <form method="post" action="update.php">
+                    <input type="submit" name="updateBtn" value="Update Billing Address" class="btn btn-secondary">
+                    <input type="hidden" name="pID" value="<?php echo $patient[0]; ?>" />
+                </form>
+            </div>
         </div>
     </div>
 
