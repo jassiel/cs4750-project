@@ -79,7 +79,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <th>Patient</th>
                         <th>Date</th>
                         <th>Description</th>
-                        <th><b>Details</b></th>
                         <th><b>Delete</b></th>
                     </tr>
                 </thead>
@@ -90,12 +89,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <td><?php echo $temp['first'] . ' ' . $temp['last']; ?></td>
                             <td><?php echo $appointment_info['date']; ?></td>
                             <td><?php echo $appointment_info['description']; ?></td>
-                            <td>
-                                <form action="request.php" method="post">
-                                    <input type="submit" value="View" name="updateAppointmentBtn" class="btn btn-primary" />
-                                    <input type="hidden" name="appID" value="<?php echo $appointment_info['appID']; ?>" />
-                                </form>
-                            </td>
                             <td>
                                 <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
                                     <input type="submit" value="Delete" name="deleteBtn" class="btn btn-danger" />
