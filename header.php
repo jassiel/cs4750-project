@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php 
+session_start(); 
+require("connect-db.php");
+require ("request-db.php"); 
+?>
 
 <header>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">

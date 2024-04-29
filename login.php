@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $mypassword = $_POST['passwd'];
     $hashed_password = password_hash($mypassword, PASSWORD_DEFAULT);
 
-    $query = 'SELECT * FROM users WHERE username=:username';
+    $query = 'SELECT * FROM Users WHERE username=:username';
     $statement = $db->prepare($query);
     $statement->bindValue(':username', $myusername);
     $statement->execute();
@@ -19,6 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (password_verify($mypassword, $result['passcode'])) {
         $_SESSION['username'] = $myusername;
+        $_SESSION['usertype'] = $result['usertype'];
+        $_SESSION['userID'] = intval($result['userID']);;
         header("location: home.php");
     } else {
         $error = 'Your Username or Password is invalid ';
