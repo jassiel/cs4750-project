@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $error = 'Failed to update address';
         }
         else {
-            // header("location: home.php");
+            header("location: home.php");
         }
 
     }
